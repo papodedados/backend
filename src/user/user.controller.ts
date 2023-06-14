@@ -18,7 +18,7 @@ export class UserController {
     //User[] array de user, buscando no array
     @Get()
     async getAllUser(): Promise<UserEntity[]> {
-      return this.userService.getAlUser();
+      return this.userService.getAllUser();
     }
 
 
