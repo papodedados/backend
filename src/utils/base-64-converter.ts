@@ -1,4 +1,5 @@
-import { LoginPayload } from 'src/auth/dtos/loginPayload.dto';
+import { LoginPayload } from '../auth/dtos/loginPayload.dto';
+
 
 export const authorizantionToLoginPayload = (
   authorization: string,
@@ -12,4 +13,4 @@ export const authorizantionToLoginPayload = (
   return JSON.parse(
     Buffer.from(authorizationSplited[1], 'base64').toString('ascii'),
   );
-};
+}; 
