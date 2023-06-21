@@ -6,6 +6,8 @@ import { CategoryEntity } from '../entities/category.entity';
 import { categoryMock } from '../__mocks__/category.mock';
 import { createCategoryMock } from '../__mocks__/create-category.mock';
 
+
+
 describe('CategoryService', () => {
   let service: CategoryService;
   let categoryRepository: Repository<CategoryEntity>;
@@ -84,5 +86,17 @@ describe('CategoryService', () => {
     expect(
       service.findCategoryByName(categoryMock.name),
     ).rejects.toThrowError();
+  });
+
+  it('should return category in find by id', async () => {
+    const category = await service.findCategoryById(categoryMock.id);
+
+    expect(category).toEqual(categoryMock);
+  });
+
+  it('should return error in not found category id', async () => {
+    jest.spyOn(categoryRepository, 'findOne').mockResolvedValue(undefined);
+
+    expect(service.findCategoryById(categoryMock.id)).rejects.toThrowError();
   });
 });
